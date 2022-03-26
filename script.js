@@ -115,6 +115,7 @@ function getButtons() {
 ///-------------------------------------
 window.onload = async () => {
   getSavedCartItems(cartItems, cartItemClickListener);
+  calculateTotal();
   await populateItems();
   await getButtons();
   // const liStorageItems = localStorage.getItem('list');
