@@ -25,7 +25,6 @@ async function calculateTotal() {
     sum += parseFloat(element.innerHTML.split('PRICE: $')[1]);
     count += 1;
   });
-  // totalPrice.innerText = sum;
   totalPrice.innerText = `Itens: ${count}
    Valor Total R$ ${sum}`;
 }
@@ -115,7 +114,7 @@ function getButtons() {
 ///-------------------------------------
 window.onload = async () => {
   getSavedCartItems(cartItems, cartItemClickListener);
-  calculateTotal();
+  await calculateTotal();
   await populateItems();
   await getButtons();
   // const liStorageItems = localStorage.getItem('list');
