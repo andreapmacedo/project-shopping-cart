@@ -1,4 +1,4 @@
-const getSavedCartItems = (items, cartItemClickListener) => {
+const getSavedCartItems = async (items, cartItemClickListener) => {
   const liCartItems = items;
   const liStorageItems = localStorage.getItem('list');
   liCartItems.innerHTML = liStorageItems;
