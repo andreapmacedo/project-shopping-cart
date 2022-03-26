@@ -4,20 +4,20 @@ const btnEmptyCart = document.querySelector('.empty-cart');
 const totalPrice = document.querySelector('.total-price');
 totalPrice.innerText = 'Total R$ 0,00';
 
-const renderLoad = () => {
+function renderLoad() {
   const father = document.querySelector('.cart');
   const statusCarregamento = document.createElement('p');
   father.appendChild(statusCarregamento);
   statusCarregamento.className = 'loading';
   statusCarregamento.innerText = 'carregando...';
-};
+}
 
-const removeRenderLoad = () => {
+function removeRenderLoad() {
   const statusCarregamento = document.querySelector('.loading');
   statusCarregamento.remove();
-};
+}
 
-function calculateTotal() {
+async function calculateTotal() {
   const list = document.querySelectorAll('.cart__items li');
   let sum = 0;
   let count = 0;
