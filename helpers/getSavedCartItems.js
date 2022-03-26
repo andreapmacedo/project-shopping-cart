@@ -1,5 +1,9 @@
-const getSavedCartItems = () => {
-  // seu código aqui
+const getSavedCartItems = (items, cartItemClickListener) => {
+  const liCartItems = items;
+  const liStorageItems = localStorage.getItem('list');
+  liCartItems.innerHTML = liStorageItems;
+  liCartItems.addEventListener('click', cartItemClickListener); // Escutador para remover item da lista quando clicado
+  calculateTotal();
 };
 
 if (typeof module !== 'undefined') {
