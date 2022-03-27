@@ -18,40 +18,40 @@ function removeRenderLoad() {
   statusCarregamento.remove();
 }
 
-// function calculateTotalOld() {
-//   const list = document.querySelectorAll('.cart__items li');
-//   // const myString = 'Hello World. How are you doing?';
-//   // const splits = myString.split(' ')[2];
-//   // console.log(splits);
-//   let sum = 0;
-//   let count = 0;
-//   list.forEach((element) => {
-//     // console.log(element.innerHTML.split(' ')[1]);
-//     sum += parseFloat(element.innerHTML.split('PRICE: $')[1]);
-//     count += 1;
-//   });
-//   // *consulta https://pt.stackoverflow.com/questions/181922/formatar-moeda-brasileira-em-javascript
-//   sum = sum.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-//   totalPrice.innerText = `Itens: ${count} unds.
-//    Subtotal: R$ ${sum}`;
-// }
-
-const calculateTotal = async () => {
-  // let count = 0;
-  let sum = 0.00;
-  const data = await fetchProducts('computador');
+function calculateTotal() {
   const list = document.querySelectorAll('.cart__items li');
-  data.forEach((dataElement) => {
-    list.forEach((listElement) => {
-      if (listElement.innerHTML.split(' ')[1] === dataElement.id) {
-        // console.log(dataElement.price);
-        sum += parseFloat(dataElement.price);
-        // count += 1;
-      }
-    });
+  // const myString = 'Hello World. How are you doing?';
+  // const splits = myString.split(' ')[2];
+  // console.log(splits);
+  let sum = 0;
+  let count = 0;
+  list.forEach((element) => {
+    // console.log(element.innerHTML.split(' ')[1]);
+    sum += parseFloat(element.innerHTML.split('PRICE: $')[1]);
+    count += 1;
   });
-  totalPrice.innerText = sum.toFixed(2);
-};
+  // *consulta https://pt.stackoverflow.com/questions/181922/formatar-moeda-brasileira-em-javascript
+  sum = sum.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+  totalPrice.innerText = `Itens: ${count} unds.
+   Subtotal: R$ ${sum}`;
+}
+
+// const calculateTotal = async () => {
+//   // let count = 0;
+//   let sum = 0.00;
+//   const data = await fetchProducts('computador');
+//   const list = document.querySelectorAll('.cart__items li');
+//   data.forEach((dataElement) => {
+//     list.forEach((listElement) => {
+//       if (listElement.innerHTML.split(' ')[1] === dataElement.id) {
+//         // console.log(dataElement.price);
+//         sum += parseFloat(dataElement.price);
+//         // count += 1;
+//       }
+//     });
+//   });
+//   totalPrice.innerText = sum.toFixed(2);
+// };
 /*
 totalPrice.innerText = `Itens: ${count} unds.
 Subtotal: R$ ${sum.toFixed(2)}`;
