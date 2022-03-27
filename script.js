@@ -2,7 +2,7 @@ const secList = document.querySelector('.items');
 const cartItems = document.querySelector('.cart__items');
 const btnEmptyCart = document.querySelector('.empty-cart');
 const totalPrice = document.querySelector('.total-price');
-totalPrice.innerText = 0.00;
+totalPrice.innerText = 0;
 // totalPrice.innerText = 'Total R$ 0.00';
 
 function renderLoad() {
@@ -29,7 +29,8 @@ async function calculateTotal() {
   });
   // *consulta https://pt.stackoverflow.com/questions/181922/formatar-moeda-brasileira-em-javascript
   // sum = sum.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-  totalPrice.innerText = sum.toFixed(2);
+  // totalPrice.innerText = sum.toFixed(2);
+  totalPrice.innerText = sum;
   // totalPrice.innerText = `Itens: ${ count } unds.
   //  Subtotal: R$ ${sum}`;
 }
