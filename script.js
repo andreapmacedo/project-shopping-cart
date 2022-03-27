@@ -18,22 +18,20 @@ function removeRenderLoad() {
   statusCarregamento.remove();
 }
 
-function calculateTotal() {
+async function calculateTotal() {
   const list = document.querySelectorAll('.cart__items li');
-  // const myString = 'Hello World. How are you doing?';
-  // const splits = myString.split(' ')[2];
-  // console.log(splits);
   let sum = 0;
-  let count = 0;
+  // let count = 0;
   list.forEach((element) => {
     // console.log(element.innerHTML.split(' ')[1]);
     sum += parseFloat(element.innerHTML.split('PRICE: $')[1]);
-    count += 1;
+    // count += 1;
   });
   // *consulta https://pt.stackoverflow.com/questions/181922/formatar-moeda-brasileira-em-javascript
-  sum = sum.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-  totalPrice.innerText = `Itens: ${count} unds.
-   Subtotal: R$ ${sum}`;
+  // sum = sum.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+  totalPrice.innerText = sum.toFixed(2);
+  // totalPrice.innerText = `Itens: ${ count } unds.
+  //  Subtotal: R$ ${sum}`;
 }
 
 // const calculateTotal = async () => {
