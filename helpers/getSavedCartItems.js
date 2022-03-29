@@ -7,7 +7,7 @@
 // };
 const getSavedCartItems = async () => {
   const localList = localStorage.getItem('cartItems');
-  console.log(localList); 
+  // console.log(localList); 
   return localList;
 };
 
