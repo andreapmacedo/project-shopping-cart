@@ -18,52 +18,37 @@ function removeRenderLoad() {
   loadingElement.remove();
 }
 
-// async function calculateTotal() {
-//   const list = document.querySelectorAll('.cart__items li');
-//   const sum = list.reduce((acc, curr) => {
-//     acc += curr.innerHTML.split(' ')[1];
-//     return acc;
-//   });
-//   // *consulta https://pt.stackoverflow.com/questions/181922/formatar-moeda-brasileira-em-javascript
-//   // sum = sum.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-//   totalPrice.innerText = sum.toFixed(2);
-//   // totalPrice.innerText = `Itens: ${ count } unds.
-//   //  Subtotal: R$ ${sum}`;
-// }
-
-
 async function calculateTotal() {
-  const list = document.querySelectorAll('.cart__items li');
   let sum = 0;
-  list.forEach((element) => {
-    // console.log(element.innerHTML.split(' ')[1]);
-    sum += parseFloat(element.innerHTML.split('PRICE: $')[1]);
-  });
-  totalPrice.innerText = sum;
+  // const nodeList = document.querySelectorAll('.cart__items li');
+  const nodeList = document.querySelectorAll('.cart__item');
+  // console.log(nodeList);
+  // *consulta https://stackoverflow.com/questions/222841/most-efficient-way-to-convert-an-htmlcollection-to-an-array
+  const nodeListArray = [...nodeList];
+  if(nodeListArray.length > 0){
+  // console.log(nodeListArray);
+  // console.log(nodeListArray[0]);
+  // console.log(nodeListArray[0].innerHTML);
+  // console.log(nodeListArray[0].innerHTML.split(' '));
+  // console.log(nodeListArray[0].innerHTML.split('$'));
+  // console.log(nodeListArray[0].innerHTML.split('$')[1]);
+  // const htmlCollection = document.getElementsByClassName('cart__item');
+  // console.log(htmlCollection);
+  // const htmlCollectionArray = [...htmlCollection];
+  // console.log(htmlCollectionArray);
+  // console.log(htmlCollectionArray[0]);
+  // console.log(htmlCollectionArray[0].innerHTML);
+  sum = nodeListArray.reduce((acc, curr) => {
+    acc += parseFloat(curr.innerHTML.split('$')[1]);
+    return acc;
+  },0);
+}
+totalPrice.innerText = sum;
   // *consulta https://pt.stackoverflow.com/questions/181922/formatar-moeda-brasileira-em-javascript
   // sum = sum.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-  // totalPrice.innerText = sum.toFixed(2);
   // totalPrice.innerText = `Itens: ${ count } unds.
   //  Subtotal: R$ ${sum}`;
-  // totalPrice.innerText = `Subtotal: R$ ${sum}`;
 }
-
-// const calculateTotal = async () => {
-//   // let count = 0;
-//   let sum = 0.00;
-//   const data = await fetchProducts('computador');
-//   const list = document.querySelectorAll('.cart__items li');
-//   data.forEach((dataElement) => {
-//     list.forEach((listElement) => {
-//       if (listElement.innerHTML.split(' ')[1] === dataElement.id) {
-//         // console.log(dataElement.price);
-//         sum += parseFloat(dataElement.price);
-//         // count += 1;
-//       }
-//     });
-//   });
-//   totalPrice.innerText = sum.toFixed(2);
-// };
 
 function setEmputCart() {
   cartItems.innerHTML = '';
@@ -147,13 +132,46 @@ function getButtons() {
   });
 }
 
-///-------------------------------------
 window.onload = async () => {
   getSavedCartItems(cartItems, cartItemClickListener);
   await calculateTotal();
   await populateItems();
-  await getButtons();
+  getButtons();
   // const liStorageItems = localStorage.getItem('list');
   // cartItems.innerHTML = liStorageItems;
   // cartItems.addEventListener('click', cartItemClickListener); // Escutador para remover item da lista quando clicado
 };
+
+
+// alternative (funcional)
+// async function calculateTotal() {
+//   const list = document.querySelectorAll('.cart__items li');
+//   // console.log(list);
+//   // console.log(list[0].innerHTML);
+//   // console.log(list[0].innerHTML.split(' '));
+//   // console.log(list[0].innerHTML.split('$')[1]);
+//   let sum = 0;
+//   list.forEach((element) => {
+//     // console.log(element.innerHTML.split(' ')[1]);
+//     sum += parseFloat(element.innerHTML.split('$')[1]);
+//   });
+//   totalPrice.innerText = sum;
+// }
+
+// alternative (funcional)
+// const calculateTotal = async () => {
+//   // let count = 0;
+//   let sum = 0.00;
+//   const data = await fetchProducts('computador');
+//   const list = document.querySelectorAll('.cart__items li');
+//   data.forEach((dataElement) => {
+//     list.forEach((listElement) => {
+//       if (listElement.innerHTML.split(' ')[1] === dataElement.id) {
+//         // console.log(dataElement.price);
+//         sum += parseFloat(dataElement.price);
+//         // count += 1;
+//       }
+//     });
+//   });
+//   totalPrice.innerText = sum.toFixed(2);
+// };
