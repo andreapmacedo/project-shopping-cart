@@ -4,6 +4,16 @@ const btnEmptyCart = document.querySelector('.empty-cart');
 const totalPrice = document.querySelector('.total-price');
 totalPrice.innerText = 0;
 
+function getCartItems() {
+  return cartItems.innerHTML;
+}
+
+function saveLocalStorage() {
+  localStorage.setItem('list', getCartItems());
+  const listItems = getCartItems();
+  saveCartItems(listItems);
+}
+
 function renderLoad() {
   const container = document.querySelector('.cart');
   const elementLoading = document.createElement('p');
@@ -34,7 +44,7 @@ async function calculateTotal() {
 function setEmputCart() {
   cartItems.innerHTML = '';
   calculateTotal();
-  saveCartItems(cartItems);
+  saveLocalStorage();
 }
 
 btnEmptyCart.addEventListener('click', setEmputCart);
@@ -71,7 +81,7 @@ function getSkuFromProductItem(item) {
 function cartItemClickListener(event) {
   event.target.remove();
   calculateTotal();
-  saveCartItems(cartItems);
+  saveLocalStorage();
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -100,7 +110,7 @@ async function getFetchItem(itemID) {
   const newCartItem = createCartItemElement(item);
   cartItems.appendChild(newCartItem);
   calculateTotal();
-  saveCartItems(cartItems);
+  saveLocalStorage();
 }
 
 function getButtons() {
@@ -114,13 +124,13 @@ function getButtons() {
 }
 
 window.onload = async () => {
-  getSavedCartItems(cartItems, cartItemClickListener);
-  await calculateTotal();
-  await populateItems();
-  getButtons();
   // const liStorageItems = localStorage.getItem('list');
-  // cartItems.innerHTML = liStorageItems;
-  // cartItems.addEventListener('click', cartItemClickListener); // Escutador para remover item da lista quando clicado
+  const liStorageItems = await getSavedCartItems();
+  cartItems.innerHTML = liStorageItems;
+  cartItems.addEventListener('click', cartItemClickListener); // Escutador para remover item da lista quando clicado
+  await populateItems();
+  await calculateTotal();
+  getButtons();
 };
 
 // alternative (funcional)
