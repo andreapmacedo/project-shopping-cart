@@ -18,6 +18,19 @@ function removeRenderLoad() {
   statusCarregamento.remove();
 }
 
+// async function calculateTotal() {
+//   const list = document.querySelectorAll('.cart__items li');
+//   const sum = list.reduce((acc, curr) => {
+//     acc += curr.innerHTML.split(' ')[1];
+//     return acc;
+//   });
+//   // *consulta https://pt.stackoverflow.com/questions/181922/formatar-moeda-brasileira-em-javascript
+//   // sum = sum.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+//   totalPrice.innerText = sum.toFixed(2);
+//   // totalPrice.innerText = `Itens: ${ count } unds.
+//   //  Subtotal: R$ ${sum}`;
+// }
+
 async function calculateTotal() {
   const list = document.querySelectorAll('.cart__items li');
   let sum = 0;
@@ -93,13 +106,13 @@ function createProductItemElement({ sku, name, image }) {
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
-//--------------------------------------
+
 function cartItemClickListener(event) {
   event.target.remove();
   calculateTotal();
   saveCartItems(cartItems);
 }
-///-------------------------------------
+
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
@@ -107,7 +120,7 @@ function createCartItemElement({ sku, name, salePrice }) {
   li.addEventListener('click', cartItemClickListener);
   return li;
 }
-//--------------------------------------
+
 async function populateItems() {
   renderLoad();
   const data = await fetchProducts('computador'); // lista
