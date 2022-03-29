@@ -31,6 +31,7 @@ function removeRenderLoad() {
 //   //  Subtotal: R$ ${sum}`;
 // }
 
+
 async function calculateTotal() {
   const list = document.querySelectorAll('.cart__items li');
   let sum = 0;
