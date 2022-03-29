@@ -3,23 +3,22 @@ const cartItems = document.querySelector('.cart__items');
 const btnEmptyCart = document.querySelector('.empty-cart');
 const totalPrice = document.querySelector('.total-price');
 totalPrice.innerText = 0;
-// totalPrice.innerText = 'Total R$ 0.00';
 
 function renderLoad() {
-  const section = document.querySelector('.cart');
-  const loadingElement = document.createElement('p');
-  section.appendChild(loadingElement);
-  loadingElement.className = 'loading';
-  loadingElement.innerText = 'carregando...';
+  const container = document.querySelector('.cart');
+  const elementLoading = document.createElement('p');
+  container.appendChild(elementLoading);
+  elementLoading.className = 'loading';
+  elementLoading.innerText = 'carregando...';
 }
 
 function removeRenderLoad() {
-  const loadingElement = document.querySelector('.loading');
-  loadingElement.remove();
+  const elementLoading = document.querySelector('.loading');
+  elementLoading.remove();
 }
 
 async function calculateTotal() {
-  const list = document.querySelectorAll('.cart__items li');
+  const list = document.querySelectorAll('.cart__item');
   // console.log(list);
   // console.log(list[0].innerHTML);
   // console.log(list[0].innerHTML.split(' '));
