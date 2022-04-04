@@ -33,9 +33,11 @@ async function calculateTotal() {
   // console.log(list[0].innerHTML);
   // console.log(list[0].innerHTML.split(' '));
   // console.log(list[0].innerHTML.split('$')[1]);
+  // console.log(list[0].innerHTML.split('$').at(1));
+  // console.log(list[0].innerHTML.split('$').shift());
   let sum = 0;
   list.forEach((element) => {
-    // console.log(element.innerHTML.split(' ')[1]);
+    // console.log(element.innerHTML.split('$').at(1));
     sum += parseFloat(element.innerHTML.split('$')[1]);
   });
   totalPrice.innerText = sum;
